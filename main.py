@@ -10,9 +10,9 @@ screen.title("Indian States guess game")
 image = 'blank_india_map.gif'
 screen.addshape(image)
 turtle.shape(image)
-turtle.setup(width=700,height=650,startx=None,starty=5)
+turtle.setup(width=700,height=650,startx=None,starty=5)  # to adjust the screen size and position
 
-df = pd.read_csv('state_names.csv')
+df = pd.read_csv('state_names.csv') # read the csv file
 guessed_set = []
 t = turtle.Turtle()
 t.penup()
@@ -30,7 +30,7 @@ while score < 36:
     for state in df.states:
         if answer_state in guessed_set:
             break
-        elif answer_state == state:
+        elif answer_state == state:           # to display correct answers on the map
             score += 1
             guessed_set.append(answer_state)
             x = df[df.states == answer_state].x
@@ -38,7 +38,7 @@ while score < 36:
             t.goto(x.item(),y.item())
             t.write(answer_state,align='center')
 
-for state in df.states:
+for state in df.states:             # to mark all the answers which we missed in red color
     if state not in guessed_set:
         t.speed(7)
         t.color('red')
